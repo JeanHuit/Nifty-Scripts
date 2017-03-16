@@ -16,4 +16,4 @@ end
 # Base url for queries to the owlbot,accepts arguement and sets format to json.
 # format could also be set to "api"
 
-read_url("https://owlbot.info/api/v1/dictionary/#{lookup}?format=json")
+read_url("https://owlbot.info/api/v1/dictionary/#{lookup.downcase}?format=json")
