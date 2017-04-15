@@ -1,5 +1,11 @@
+# Need the following to make http request and read/parse
+# JSON formats.
+
 require 'open-uri'
 require 'json'
+
+# This block of code is inapropriately named. It rather reads each line of a txt
+# file and writes to an array. It strips the words of extra spaces
 
 def write_word
   filename = 'words.txt'
@@ -8,9 +14,11 @@ def write_word
   txt.each_line { |line| arr_words.push(line) }
   txt.close
   arr_words.each { |word| dict(word.strip) }
-  # dict(arr_words[593].strip)
 end
 
+# The following block, takes each word from the array and verifies it
+# against the owl dictionary.
+# The final output is another text file with defineable words.
 
 def dict(lookup)
   url = "https://owlbot.info/api/v1/dictionary/#{lookup.downcase}?format=json"
