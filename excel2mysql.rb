@@ -1,18 +1,38 @@
-require 'sequel'  #gem to access various DB's
-require 'roo' #gem to read spreadsheets
+require 'sequel' # gem to access various DB's
+require 'axlsx' # gem to write spreadsheets
 
-DB = Sequel.connect(adapter: '', user: '', password: '',
-                    host: 'localhost', database: '') #Connection string, adapter <mysql,postgres,ado, etc etc>
+DB = Sequel.connect(adapter: 'mysql', user: 'root', password: '@Busty750',
+                    host: 'localhost', database: 'revenue')
 
-my_list = Roo::Spreadsheet.open('EXCEL SPREADSHEET') #Open spreadsheet
+ds = DB.fetch('SELECT biz_entry.valuation_no,biz_entry.biz_name,
+biz_entry.biz_type,biz_entry.biz_category,biz_entry.fixed_chargeable_amt,
+biz_entry.surburb, payment.amount,payment.ballance FROM biz_entry
+ INNER JOIN payment ON biz_entry.valuation_no = payment.valuation_no').all
+#
+puts ds.inspect
+# package = Axlsx::Package.new
+# wb = package.workbook
+# myworkbook.add_worksheet(name: 'Business Operating Permit') do |sheet|
+#   sheet.add_row ['Valuation Number', 'Business Name', 'Business Type',
+#                  'Business Category', 'Fixed Chargable Amount', 'Surburb',
+#                  'Amount', 'Balance']
+#   ds.each do |cell|
+#     sheet.add_row[cell[:valuation_no], cell[:biz_name], cell[:biz_type],
+#                   cell[:biz_category], cell[:fixed_chargeable_amt],
+#                   cell[:surburb], cell[:amount], cell[:ballance]]
+#   end
+# end
+#
+# package.serialize
+# send_file('bop.xlsx', filename: 'bop.xlsx', type: 'application/vnd.ms-excel')
 
-my_list.each(name: 'Full Name', residence: 'Residential Address',
-             phone: 'Phone Number', email: 'Email Address') do |hash|
-               DB[:Dues_tbl].insert(Name: hash[:name].to_s, Dues: 'MMYY',
-                                    Address: hash[:residence].to_s,
-                                    PhoneNumber: hash[:phone].to_s,
-                                    Email: hash[:email].to_s)
-             end
-# Call each and via hash insert into the DB.
-#README
-# This script is useful when uyou want to convert data from excel into mysql
+  # wb.add_worksheet(name: "Basic Worksheet") do |sheet|
+  #   sheet.add_row ['Valuation Number', 'Business Name', 'Business Type',
+  #   #                  'Business Category', 'Fixed Chargable Amount', 'Surburb',
+  #   #                  'Amount', 'Balance']
+  #   sheet.add_row [1, 2, 3]
+  #   sheet.add_row ['     preserving whitespace']
+  # end
+  #  package.serialize 'bop.xlsx'
+  #  send_file('bop.xlsx', filename: 'bop.xlsx', type: 'application/vnd.ms-excel')
+c
