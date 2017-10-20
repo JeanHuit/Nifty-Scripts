@@ -29,3 +29,8 @@ The Huge Thesaurus API allows for a specific number of calls. The difference her
 
 ## Dictionary test  ```dict_test.rb``` :memo:
 Just a sample script that takes in a list of words and checks if they are *real* words, according to TheOwlBot and writes the real words to another text file. Simple enough to understand from the code. No magic there.
+
+
+## Dictionary test  ```mysql2excel.rb``` :memo:
+This is a simple script that pulls data from a mysql database or any database for that matter, via sequel.
+This then converts, creates and store data in excel format.
