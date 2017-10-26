@@ -17,7 +17,8 @@ end
 def sunrise_sunset(lat, lng)
   url = "https://api.sunrise-sunset.org/json?lat=#{lat}&lng=#{lng}"
   output = JSON.parse(open(url).read)
-  puts output['results']['sunrise'] + ' ' + output['results']['sunset']
+  puts 'Sunrise at location is at' + '' + output['results']['sunrise'] +
+       ' and Sunset is at ' + '' + output['results']['sunset']
 end
 
 def main
@@ -26,5 +27,4 @@ def main
   reverse_geo(address)
 end
 
-# main
-sunrise_sunset(5.5139869, -0.2991199)
+ main
