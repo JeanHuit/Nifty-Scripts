@@ -34,3 +34,8 @@ Just a sample script that takes in a list of words and checks if they are *real*
 ## MySQL2Excel  ```mysql2excel.rb``` :memo:
 This is a simple script that pulls data from a mysql database or any database for that matter, via sequel.
 This then converts, creates and store data in excel format.
+
+
+## Rise and Set  ```risenset.rb``` :memo:
+This is a simple script that takes in location address and gets the sunset and sunrise times for said location.
+Nothing special.
