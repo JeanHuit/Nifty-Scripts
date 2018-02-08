@@ -1,3 +1,7 @@
+#Author: Jean Huit
+#Date: 08-02-2018
+#Dependencies: Spidr | open-uri | digest |Awesome_Print
+
 require 'Spidr'
 require 'open-uri'
 require 'digest'
@@ -15,3 +19,6 @@ end
 
 puts url_list.size
 ap url_list
+
+# TODO: Connect to some of database for persistence
+# TODO: Make up a simple web interface for this
