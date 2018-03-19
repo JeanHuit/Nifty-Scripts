@@ -7,7 +7,8 @@ Dotenv.load
 
 def reverse_geo(address)
   geokey = ENV['API_KEY']
-  url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{address}&key=#{geokey}"
+  url = "https://maps.googleapis.com/maps/api/geocode/json?address=
+        #{address}&key=#{geokey}"
   output = JSON.parse(open(url).read)
   latitude = output['results'][0]['geometry']['location']['lat']
   longitude = output['results'][0]['geometry']['location']['lng']
@@ -27,4 +28,4 @@ def main
   reverse_geo(address)
 end
 
- main
+main
