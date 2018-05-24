@@ -4,7 +4,6 @@ require 'dotenv'
 
 Dotenv.load
 
-
 def reverse_geo(address)
   geokey = ENV['API_KEY']
   url = "https://maps.googleapis.com/maps/api/geocode/json?address=
