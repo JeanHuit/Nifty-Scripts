@@ -39,3 +39,6 @@ This then converts, creates and store data in excel format.
 ## Rise and Set  ```risenset.rb``` :memo:
 This is a simple script that takes in location address and gets the sunset and sunrise times for said location.
 Nothing special.
+
+## Unshorten  ```unshorten.rb``` :memo:
+This is a simple script that takes in a short url/link and unravels it, showing the main long link.
