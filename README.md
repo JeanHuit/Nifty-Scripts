@@ -42,3 +42,9 @@ Nothing special.
 
 ## Unshorten  ```unshorten.rb``` :memo:
 This is a simple script that takes in a short url/link and unravels it, showing the main long link.
+
+## WP-test ```wp-test.rb``` :memo:
+Simple ruby implementation of wordpress's php password generator implementation
+
+## Transmission ```transmission.sh``` :memo:
+Script to setup a disposable transmission bit torrent server on vultr.
