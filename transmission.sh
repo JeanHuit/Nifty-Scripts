@@ -2,7 +2,7 @@
 
 cd
 
-sudu apt-get update && sudo apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 
 sudo apt install transmission-cli transmission-common transmission-daemon -y
 
