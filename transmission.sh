@@ -13,6 +13,7 @@ sudo service transmission-daemon stop
 sleep 5
 
 curl http://termbin.com/q2v3 > settings.json
+#this no longer works.  TODO  soon
 
 sudo mv settings.json /var/lib/transmission-daemon/info/settings.json
 
