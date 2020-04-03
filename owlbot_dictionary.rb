@@ -2,25 +2,35 @@
 
 require 'open-uri'
 require 'json'
+require 'dotenv'
 
-# Allows you to pass word to lookup as an argument
-
-lookup = ARGV.first
+Dotenv.load
 
 # Function to read url and parse output
 def read_url(url)
-  raw_output = open(url).read
+  key = ENV['owls_key']
+  raw_output = URI.open(url, 'Authorization' => "Token #{key}").read
   content = JSON.parse(raw_output)
+  # Using rescue to catch errors that may pop up
+rescue NoMethodError
+  puts 'bad word'
+rescue OpenURI::HTTPError
+  puts 'word does not exist, please try another'
+else
   puts content
 end
 
 # Base url for queries to the owlbot,accepts arguement and sets format to json.
 # format could also be set to "api"
+def start_up
+  # Allows you to pass word to lookup as an argument
 
-read_url("https://owlbot.info/api/v1/dictionary/#{lookup.downcase}?format=json")
+  lookup = ARGV.first
+  read_url("https://owlbot.info/api/v4/dictionary/#{lookup.downcase}?format=json")
+end
 
-# adding wikipedia search to this
-# read_url("https://en.wikipedia.org/w/api.php?action=query
-#             &titles=#{lookup.downcase}
-#             &prop=revisions&rvprop=content&format=jsonfm&formatversion=2
-#             ")
+if !ARGV.first
+  puts 'syntax: ruby owlbot_dictionary.rb <word>'
+else
+  start_up
+end
