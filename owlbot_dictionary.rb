@@ -18,6 +18,8 @@ rescue OpenURI::HTTPError
   puts 'word does not exist, please try another'
 else
   puts content
+  # content['definitions][0]['type','definition','example','image_url''emoji','pronunciation]
+  # content['definitions'][0]['definition'] - for definition alone
 end
 
 # Base url for queries to the owlbot,accepts arguement and sets format to json.
