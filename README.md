@@ -48,3 +48,7 @@ Simple ruby implementation of wordpress's php password generator implementation
 
 ## Transmission ```transmission.sh``` :memo:
 Script to setup a disposable transmission bit torrent server on vultr.
+
+## News ```News .rb``` :memo:
+Simple ruby script for working with news api from (https://newsapi.org)[Newsapi.org].
+Returns a json response of news articles.
