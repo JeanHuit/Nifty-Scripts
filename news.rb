@@ -18,15 +18,15 @@ time_ = time_parameter.year.to_s + '-' + time_parameter.month.to_s + '-' +
         time_parameter.day.to_s
 
 def receive_news(query, time_)
-  url = "http://newsapi.org/v2/everything?q=#{query}&from=#{time_}&sortBy=publishedAt&apiKey=#{@newsapi}"
+  url = "http://newsapi.org/v2/everything?q=#{query}&from=#{time_}&language=en&sortBy=publishedAt&apiKey=#{@newsapi}"
   raw_output = URI.open(url).read
   content = JSON.parse(raw_output)
   totalresults = content['totalResults'].to_i
   (0...totalresults).each do |number|
     puts content['articles'][number]['title']
+  rescue NoMethodError
     # puts content['articles'][number]['content']
         # TODO - Put in rescue statements to skip the errors
-
   end
 end
 
@@ -37,6 +37,7 @@ def receive_headlines
   totalresults = content['totalResults'].to_i
   (0...totalresults).each do |number|
     puts content['articles'][number]['title']
+    rescue NoMethodError
     # TODO - Put in rescue statements to skip the errors
   end
 end
