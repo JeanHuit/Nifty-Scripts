@@ -3,6 +3,9 @@
 
 require 'open-uri'
 require 'json'
+require 'dotenv'
+
+Dotenv.load
 
 # This block of code is inapropriately named. It rather reads each line of a txt
 # file and writes to an array. It strips the words of extra spaces
@@ -21,17 +24,19 @@ end
 # The final output is another text file with defineable words.
 
 def dict(lookup)
-  url = "https://owlbot.info/api/v1/dictionary/#{lookup.downcase}?format=json"
-  raw_output = open(url).read
+  key = ENV['owls_key']
+  url = "https://owlbot.info/api/v4/dictionary/#{lookup.downcase}?format=json"
+  raw_output = URI.open(url, 'Authorization' => "Token #{key}").read
   content = JSON.parse(raw_output)
-  puts content[0]['defenition']
+  puts content['definitions'][0]['definition']
 rescue NoMethodError
   puts 'bad word'
 rescue OpenURI::HTTPError
   puts 'bad word'
 else
   newfile = 'defined.txt'
-  File.open(newfile, 'a') { |to_append| to_append.write("#{lookup}\n") }
+  File.open(newfile, 'a') { |to_append| to_append.write("#{lookup}, #{content['definitions'][0]['type']}\n") }
+  sleep(4)
 end
 
 write_word
