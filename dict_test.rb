@@ -28,15 +28,19 @@ def dict(lookup)
   url = "https://owlbot.info/api/v4/dictionary/#{lookup.downcase}?format=json"
   raw_output = URI.open(url, 'Authorization' => "Token #{key}").read
   content = JSON.parse(raw_output)
-  puts content['definitions'][0]['definition']
+  content['definitions'][0]['definition']
 rescue NoMethodError
-  puts 'bad word'
+  
 rescue OpenURI::HTTPError
-  puts 'bad word'
+
+rescue Net::OpenTimeout
+  sleep(360)
+rescue JSON::ParserError
+
 else
   newfile = 'defined.txt'
   File.open(newfile, 'a') { |to_append| to_append.write("#{lookup}, #{content['definitions'][0]['type']}\n") }
-  sleep(4)
+  sleep(10)
 end
 
 write_word
