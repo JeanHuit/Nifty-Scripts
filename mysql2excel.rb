@@ -44,26 +44,50 @@
 #              end
 
 
+# require 'sequel' # gem to access various DB's
+# require 'roo' # gem to read spreadsheets
+
+# DB = Sequel.connect(adapter: :mysql2, user: 'root', password: 'root',
+#                     host: '127.0.0.1', database: 'KuafoDB') # Connection string, adapter <mysql,postgres,ado, etc etc>
+# # DB = Sequel.connect(type: :sql, uri: 'mysql2://root:root@127.0.0.1:3306/ipdb')
+# my_list = Roo::Spreadsheet.open('*.xlsx') # Open spreadsheet
+
+# my_list.each(division: 'DIVISION', section: 'SECTION', startdate: 'START DATE', pinvestigator: 'PRINCIPAL INVESTIGATOR', pscientist: 'PARTICIPATING SCIENTISTS', rtitle: 'RESEARCH TITLE', aorf: 'AREA/FIELD',collabo: 'COLLABORATORS', status: 'STATUS',
+#              sponsor: 'SPONSOR', duration: 'DURATION') do |hash|
+#                DB[:InstiProjects].insert(
+#                  Divisions: hash[:division].to_s, 
+#                  StartDate: hash[:startdate].to_s, 
+#                  PrincipalInvestigator: hash[:pinvestigator].to_s,
+#                  ParticipatingScientist: hash[:pscientist].to_s,
+#                  ResearchTitle: hash[:rtitle].to_s,
+#                  AreaFields: hash[:aorf].to_s,
+#                  Sections: hash[:section].to_s,
+#                  Statuss: hash[:status].to_s,
+#                  Sponsors: hash[:sponsor].to_s,
+#                  Collaborators: hash[:collabo].to_s,
+#                  Duration: hash[:duration].to_s)
+#              end
+
+
+
+
+
 require 'sequel' # gem to access various DB's
 require 'roo' # gem to read spreadsheets
 
-DB = Sequel.connect(adapter: :mysql2, user: 'root', password: 'root',
-                    host: '127.0.0.1', database: 'KuafoDB') # Connection string, adapter <mysql,postgres,ado, etc etc>
+DB = Sequel.connect(adapter: 'mysql2', user: 'root', password: 'root',
+                    host: '127.0.0.1', database: 'STACCC') # Connection string, adapter <mysql,postgres,ado, etc etc>
 # DB = Sequel.connect(type: :sql, uri: 'mysql2://root:root@127.0.0.1:3306/ipdb')
-my_list = Roo::Spreadsheet.open('*.xlsx') # Open spreadsheet
+my_list = Roo::Spreadsheet.open('grid_membership_details.xlsx') # Open spreadsheet
 
-my_list.each(division: 'DIVISION', section: 'SECTION', startdate: 'START DATE', pinvestigator: 'PRINCIPAL INVESTIGATOR', pscientist: 'PARTICIPATING SCIENTISTS', rtitle: 'RESEARCH TITLE', aorf: 'AREA/FIELD',collabo: 'COLLABORATORS', status: 'STATUS',
-             sponsor: 'SPONSOR', duration: 'DURATION') do |hash|
-               DB[:InstiProjects].insert(
-                 Divisions: hash[:division].to_s, 
-                 StartDate: hash[:startdate].to_s, 
-                 PrincipalInvestigator: hash[:pinvestigator].to_s,
-                 ParticipatingScientist: hash[:pscientist].to_s,
-                 ResearchTitle: hash[:rtitle].to_s,
-                 AreaFields: hash[:aorf].to_s,
-                 Sections: hash[:section].to_s,
-                 Statuss: hash[:status].to_s,
-                 Sponsors: hash[:sponsor].to_s,
-                 Collaborators: hash[:collabo].to_s,
-                 Duration: hash[:duration].to_s)
+my_list.each(surname: 'Surname', fname: 'First Name', sex: 'Sex', dob: 'Date Of Birth', pob: 'Place Of Birth', mob: 'Mobile Number', occupation: 'Occupation') do |hash|
+               DB[:MemberTbl].insert(
+                 Surname: hash[:surname].to_s, 
+                 FirstName: hash[:fname].to_s, 
+                 Sex: hash[:sex].to_s,
+                 DateOfBirth: hash[:dob].to_s,
+                 PlaceOfBirth: hash[:pob].to_s,
+                 MobileNumber: hash[:mob].to_s,
+                 Occupation: hash[:occupation].to_s
+                 )
              end
