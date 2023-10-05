@@ -5,6 +5,7 @@
 require 'Spidr'
 require 'open-uri'
 require 'digest'
+require 'dotenv'
 
 url_list = Hash.new { |hash, key| hash[key] = [] }
 # changes ladma to insti

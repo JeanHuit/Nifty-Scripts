@@ -1,5 +1,5 @@
 
-def wp_generate_password(len = 12)
+def wp_generate_password(len = 13)
   chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()'
   chars = chars.split('')
   a = 0
