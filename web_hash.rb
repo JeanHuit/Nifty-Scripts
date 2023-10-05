@@ -7,8 +7,9 @@ require 'open-uri'
 require 'digest'
 
 url_list = Hash.new { |hash, key| hash[key] = [] }
+# changes ladma to insti
 
-Spidr.site('http://localhost/ladma') do |spider|
+Spidr.site('http://localhost/insti') do |spider|
   spider.every_url do |url|
     url_digest = open(url).read
     url_list[url] = Digest::SHA2.hexdigest url_digest.to_s
