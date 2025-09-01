@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Apps Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(31, 38, 135, 0.5);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .app-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-description {
+            color: #718096;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .app-url {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #4a5568;
+            background: #f7fafc;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 12px;
+            height: 12px;
+            background: #48bb78;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(72, 187, 120, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0); }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Office Applications Dashboard</h1>
+            <p>Quick access to all your localhost applications</p>
+        
+        </div>
+
+        <div class="apps-grid">
+            <!-- Example apps - replace with your actual applications -->
+            <a target="_blank" href="https://rms.insti.srv" class="app-card">
+                <div class="status-indicator"></div>
+                <div class="app-icon">⚛️</div>
+                <div class="app-title">Report Management System</div>
+                <div class="app-description">Activity reports, R&D Reports,Leave & Appraisal Applications</div>
+                <div class="app-url">https://rms.insti.srv</div>
+            </a>
+
+            <a target="_blank" href="https://chat.insti.srv/" class="app-card">
+                <div class="status-indicator"></div>
+                <div class="app-icon">🚀</div>
+                <div class="app-title">In-House Chat</div>
+                <div class="app-description">Communicate with Staff, Internally - Private | Public chats</div>
+                <div class="app-url">https://chat.insti.srv/</div>
+            </a>
+
+            <a target="_blank" href="https://meet.insti.srv/" class="app-card">
+                <div class="status-indicator"></div>
+                <div class="app-icon">🗄️</div>
+                <div class="app-title">Video / Audio Communication</div>
+                <div class="app-description">Video & Audio Communication, Internally, for when text is not enough</div>
+                <div class="app-url">https://meet.insti.srv/</div>
+            </a>
+
+            
+        </div>
+
+        <div class="footer">
+            <p>Last updated: <span id="current-time"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleString();
+        }
+        
+        updateTime();
+        setInterval(updateTime, 60000); // Update every minute
+
+        // Optional: Check if apps are actually running
+        function checkAppStatus(url, cardElement) {
+            fetch(url, { mode: 'no-cors' })
+                .then(() => {
+                    // App is running
+                    cardElement.querySelector('.status-indicator').style.background = '#48bb78';
+                })
+                .catch(() => {
+                    // App is not running
+                    cardElement.querySelector('.status-indicator').style.background = '#f56565';
+                });
+        }
+
+        // Uncomment the following to enable status checking
+        
+        document.querySelectorAll('.app-card').forEach(card => {
+            const url = card.href;
+            checkAppStatus(url, card);
+        });
+        
+    </script>
+</body>
+</html>
